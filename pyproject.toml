@@ -3,7 +3,7 @@ requires = ["setuptools>=60", "setuptools-scm>=8.0", "wheel"]
 
 [project]
 name = "sun_angles"
-version = "1.1.2"
+version = "1.1.3"
 description = "calculates solar zenith and azimuth and daylight hours"
 readme = "README.md"
 authors = [
@@ -19,7 +19,7 @@ dependencies = [
     "solar-apparent-time"
 ]
 
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 
 [tool.setuptools.package-data]
 sun_angles = ["*.txt"]
