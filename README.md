@@ -1,5 +1,7 @@
 # `sun-angles` Python Package
 
+[![CI](https://github.com/JPL-Evapotranspiration-Algorithms/sun-angles/actions/workflows/ci.yml/badge.svg)](https://github.com/JPL-Evapotranspiration-Algorithms/sun-angles/actions/workflows/ci.yml)
+
 The `sun-angles` Python package calculates solar zenith and azimuth and daylight hours.
 
 [Gregory H. Halverson](https://github.com/gregory-halverson-jpl) (they/them)<br>
