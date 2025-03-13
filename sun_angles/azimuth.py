@@ -13,9 +13,6 @@ def calculate_solar_azimuth(solar_dec_deg: np.ndarray, SZA_deg: np.ndarray, hour
     Returns:
     np.ndarray: Solar azimuth angle in degrees.
     
-    The calculation is based on the formula:
-    $$ \text{solar_azimuth_rad} = \arcsin\left(-1.0 \times \sin(\text{hour_angle_rad}) \times \cos(\text{solar_dec_rad}) / \sin(\text{SZA_rad})\right) $$
-    
     Note:
     This function ignores any warnings that might be generated during the calculations.
     
