@@ -1,6 +1,8 @@
+from typing import Union
 import numpy as np
+from rasters import Raster
 
-def solar_dec_deg_from_day_angle_rad(day_angle_rad: np.ndarray) -> np.ndarray:
+def solar_dec_deg_from_day_angle_rad(day_angle_rad: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
     Calculate solar declination in degrees from the day angle in radians.
 

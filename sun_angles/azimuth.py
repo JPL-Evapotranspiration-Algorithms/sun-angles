@@ -1,7 +1,12 @@
+from typing import Union
 import warnings
 import numpy as np
+from rasters import Raster
 
-def calculate_solar_azimuth(solar_dec_deg: np.ndarray, SZA_deg: np.ndarray, hour: np.ndarray) -> np.ndarray:
+def calculate_solar_azimuth(
+        solar_dec_deg: Union[Raster, np.ndarray], 
+        SZA_deg: Union[Raster, np.ndarray], 
+        hour: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
     Calculate the solar azimuth angle based on the solar declination, solar zenith angle, and hour of the day.
     

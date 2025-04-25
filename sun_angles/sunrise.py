@@ -1,6 +1,8 @@
+from typing import Union
 import numpy as np
+from rasters import Raster
 
-def sunrise_from_SHA(SHA_deg: np.ndarray) -> np.ndarray:
+def sunrise_from_SHA(SHA_deg: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
     Calculate the sunrise hour from the sunrise hour angle (SHA) in degrees.
 

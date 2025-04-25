@@ -1,10 +1,12 @@
+from typing import Union
 import warnings
 import numpy as np
+from rasters import Raster
 
 from .day_angle import day_angle_rad_from_DOY
 from .declination import solar_dec_deg_from_day_angle_rad
 
-def SHA_deg_from_DOY_lat(DOY: np.ndarray, latitude: np.ndarray) -> np.ndarray:
+def SHA_deg_from_DOY_lat(DOY: Union[Raster, np.ndarray], latitude: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
     Calculate the sunrise hour angle in degrees from the latitude in degrees and the day of the year.
 
