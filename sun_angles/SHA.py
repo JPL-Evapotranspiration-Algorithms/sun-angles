@@ -1,19 +1,21 @@
+from typing import Union
 import warnings
 import numpy as np
+from rasters import Raster
 
 from .day_angle import day_angle_rad_from_DOY
 from .declination import solar_dec_deg_from_day_angle_rad
 
-def SHA_deg_from_DOY_lat(DOY: np.ndarray, latitude: np.ndarray) -> np.ndarray:
+def SHA_deg_from_DOY_lat(DOY: Union[Raster, np.ndarray], latitude: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
     Calculate the sunrise hour angle in degrees from the latitude in degrees and the day of the year.
 
     Parameters:
-    DOY (np.ndarray): A numpy array containing day of the year values (integers between 1 and 365).
-    latitude (np.ndarray): A numpy array containing latitude values in degrees.
+    DOY (Union[Raster, np.ndarray]): A Raster or numpy array containing day of the year values (integers between 1 and 365).
+    latitude (Union[Raster, np.ndarray]): A Raster or numpy array containing latitude values in degrees.
 
     Returns:
-    np.ndarray: A numpy array containing the corresponding sunrise hour angles in degrees.
+    Union[Raster, np.ndarray]: A Raster or numpy array containing the corresponding sunrise hour angles in degrees.
 
     The function performs the following steps:
     1. Calculate the day angle in radians from the day of the year using the function `day_angle_rad_from_DOY`.
@@ -59,4 +61,3 @@ def SHA_deg_from_DOY_lat(DOY: np.ndarray, latitude: np.ndarray) -> np.ndarray:
     sunrise_deg = np.where(sunrise_cos <= -1, 180, sunrise_deg)
 
     return sunrise_deg
-

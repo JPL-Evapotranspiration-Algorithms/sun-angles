@@ -1,20 +1,25 @@
+from typing import Union
 import numpy as np
+from rasters import Raster
 
-def sunrise_from_SHA(SHA_deg: np.ndarray) -> np.ndarray:
+def sunrise_from_SHA(SHA_deg: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
     Calculate the sunrise hour from the sunrise hour angle (SHA) in degrees.
 
-    This function takes an array of sunrise hour angles (SHA) in degrees and 
-    converts it to the corresponding sunrise hours. The conversion is based on 
-    the fact that the Earth rotates 15 degrees per hour.
+    This function takes a `Raster` or `numpy.ndarray` of sunrise hour angles (SHA) 
+    in degrees and converts it to the corresponding sunrise hours. The conversion 
+    is based on the fact that the Earth rotates 15 degrees per hour.
 
     Parameters:
-    SHA_deg (np.ndarray): Array of sunrise hour angles in degrees.
+    SHA_deg (Union[Raster, np.ndarray]): A `Raster` or `numpy.ndarray` containing 
+                                         sunrise hour angles in degrees.
 
     Returns:
-    np.ndarray: Array of calculated sunrise hours.
+    Union[Raster, np.ndarray]: A `Raster` or `numpy.ndarray` containing the 
+                               calculated sunrise hours.
 
     Example:
+    >>> import numpy as np
     >>> SHA_deg = np.array([0, 15, 30, 45])
     >>> sunrise_from_SHA(SHA_deg)
     array([12., 11., 10.,  9.])

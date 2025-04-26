@@ -1,14 +1,16 @@
+from typing import Union
 import numpy as np
+from rasters import Raster
 
-def solar_dec_deg_from_day_angle_rad(day_angle_rad: np.ndarray) -> np.ndarray:
+def solar_dec_deg_from_day_angle_rad(day_angle_rad: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
     Calculate solar declination in degrees from the day angle in radians.
 
     Parameters:
-    day_angle_rad (np.ndarray): A numpy array containing day angles in radians.
+    day_angle_rad (Union[Raster, np.ndarray]): A Raster or numpy array containing day angles in radians.
 
     Returns:
-    np.ndarray: A numpy array containing the corresponding solar declination angles in degrees.
+    Union[Raster, np.ndarray]: A Raster or numpy array containing the corresponding solar declination angles in degrees.
 
     The solar declination is calculated using the following formula:
     solar_declination = 0.006918 - 0.399912 * cos(day_angle_rad) + 0.070257 * sin(day_angle_rad)

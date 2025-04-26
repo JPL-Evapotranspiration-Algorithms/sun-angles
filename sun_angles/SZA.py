@@ -2,17 +2,17 @@ from typing import Union
 from datetime import datetime
 
 import numpy as np
-from rasters import Raster
+from rasters import Raster, CoordinateArray
 
-from solar_apparent_time import solar_day_of_year_for_longitude
+from solar_apparent_time import solar_day_of_year_for_longitude, solar_hour_of_day_for_area
 
 from .day_angle import day_angle_rad_from_DOY
 from .declination import solar_dec_deg_from_day_angle_rad
 
 def SZA_deg_from_lat_dec_hour(
-        latitude: np.ndarray, 
+        latitude: Union[Raster, np.ndarray], 
         solar_dec_deg: Union[Raster, np.ndarray], 
-        hour: Union[Raster, np.ndarray]) -> np.ndarray:
+        hour: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
     This function calculates the solar zenith angle (SZA) given the latitude, solar declination, and solar time. 
     The SZA is the angle between the zenith and the center of the sun's disc. The zenith is the point on the celestial 
@@ -95,8 +95,7 @@ def calculate_SZA_from_datetime(time_UTC: datetime, lat: float, lon: float):
     # Calculate the day of year based on the UTC time and longitude
     doy = solar_day_of_year_for_longitude(time_UTC, lon)
     # Calculate the hour of the day based on the UTC time and longitude
-    # FIXME missing `hour_of_day` implementation
-    hour = hour_of_day(time_UTC, lon)
+    hour = solar_hour_of_day_for_area(time_UTC=time_UTC, geometry=CoordinateArray(x=lon, y=lat))
     # Calculate the solar zenith angle in degrees based on the latitude, solar declination angle, and hour of the day
     SZA = calculate_SZA_from_DOY_and_hour(lat, lon, doy, hour)
 

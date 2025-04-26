@@ -1,14 +1,18 @@
+from typing import Union
 import numpy as np
+from rasters import Raster
 
-def day_angle_rad_from_DOY(DOY: np.ndarray) -> np.ndarray:
+def day_angle_rad_from_DOY(DOY: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
     Calculate the day angle in radians from the day of the year.
 
     Parameters:
-    DOY (np.ndarray): A numpy array containing day of the year values (integers between 1 and 365).
+    DOY (Union[Raster, np.ndarray]): A Raster object or a numpy array containing 
+    day of the year values (integers between 1 and 365).
 
     Returns:
-    np.ndarray: A numpy array containing the corresponding day angles in radians.
+    Union[Raster, np.ndarray]: A Raster object or a numpy array containing the 
+    corresponding day angles in radians.
 
     The day angle is calculated using the formula:
     day_angle = (2 * π * (DOY - 1)) / 365
