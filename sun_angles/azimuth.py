@@ -11,12 +11,12 @@ def calculate_solar_azimuth(
     Calculate the solar azimuth angle based on the solar declination, solar zenith angle, and hour of the day.
     
     Parameters:
-    solar_dec_deg (np.ndarray): Solar declination in degrees.
-    SZA_deg (np.ndarray): Solar zenith angle in degrees.
-    hour (np.ndarray): Hour of the day, where 0 corresponds to 00:00 and 23 corresponds to 23:00.
+    solar_dec_deg (Union[Raster, np.ndarray]): Solar declination in degrees.
+    SZA_deg (Union[Raster, np.ndarray]): Solar zenith angle in degrees.
+    hour (Union[Raster, np.ndarray]): Hour of the day, where 0 corresponds to 00:00 and 23 corresponds to 23:00.
     
     Returns:
-    np.ndarray: Solar azimuth angle in degrees.
+    Union[Raster, np.ndarray]: Solar azimuth angle in degrees.
     
     Note:
     This function ignores any warnings that might be generated during the calculations.

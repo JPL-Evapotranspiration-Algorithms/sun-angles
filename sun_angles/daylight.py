@@ -4,8 +4,8 @@ from rasters import Raster
 
 def daylight_from_SHA(SHA_deg: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
-    This function calculates daylight hours from the sunrise hour angle (SHA) in degrees.
-    
+    Calculates daylight hours from the sunrise hour angle (SHA) in degrees.
+
     The calculation is based on the formula:
     
     $$ daylight = \frac{2}{15} * SHA $$
@@ -18,13 +18,13 @@ def daylight_from_SHA(SHA_deg: Union[Raster, np.ndarray]) -> Union[Raster, np.nd
     
     Parameters
     ----------
-    SHA_deg : np.ndarray
-        Sunrise hour angle in degrees. Must be a numpy array.
+    SHA_deg : Union[Raster, np.ndarray]
+        Sunrise hour angle in degrees. Can be a `Raster` object or a numpy array.
         
     Returns
     -------
-    np.ndarray
-        Daylight hours. Returns a numpy array of the same shape as `SHA_deg`.
+    Union[Raster, np.ndarray]
+        Daylight hours. Returns a `Raster` object or a numpy array of the same shape as `SHA_deg`.
         
     References
     ----------
