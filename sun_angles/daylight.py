@@ -6,6 +6,7 @@ from typing import Union
 import numpy as np
 # Custom Raster type for geospatial data
 from rasters import Raster
+from rasters import SpatialGeometry
 # For handling date and time
 from datetime import datetime
 # For parsing date strings
@@ -14,9 +15,6 @@ from dateutil import parser
 import pandas as pd
 # Function to compute sunrise hour angle from day of year and latitude
 from .SHA import SHA_deg_from_DOY_lat
-# Geometry class for spatial data
-from .sun_angles import SpatialGeometry
-
 
 def daylight_from_SHA(SHA_deg: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
