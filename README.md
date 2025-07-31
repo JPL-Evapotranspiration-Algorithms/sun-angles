@@ -32,12 +32,15 @@ import sun_angles
 - **Description:** Calculates the day angle (in radians) from the day of the year.
 - **Parameters:** `DOY` (int, numpy array, or Raster): Day of year (1–365).
 - **Returns:** Day angle in radians.
-- **Reference:** Duffie & Beckman (2013).
+- **Reference:** Duffie, J. A., & Beckman, W. A. (2013). Solar Engineering of Thermal Processes (4th ed.). Wiley.
+
 
 ### 2. `solar_dec_deg_from_day_angle_rad(day_angle_rad)`
 - **Description:** Computes the solar declination (in degrees) from the day angle (in radians).
 - **Parameters:** `day_angle_rad` (float, numpy array, or Raster): Day angle in radians.
 - **Returns:** Solar declination in degrees.
+- **Reference:** Duffie, J. A., & Beckman, W. A. (2013). Solar Engineering of Thermal Processes (4th ed.). Wiley.
+
 
 ### 3. `SHA_deg_from_DOY_lat(DOY, latitude)`
 - **Description:** Calculates the sunrise hour angle (SHA, in degrees) from day of year and latitude.
@@ -45,11 +48,17 @@ import sun_angles
 	- `DOY` (int, numpy array, or Raster): Day of year.
 	- `latitude` (float, numpy array, or Raster): Latitude in degrees.
 - **Returns:** Sunrise hour angle in degrees.
+- **Reference:** Duffie, J. A., & Beckman, W. A. (2013). Solar Engineering of Thermal Processes (4th ed.). Wiley.
+
 
 ### 4. `daylight_from_SHA(SHA_deg)`
 - **Description:** Converts sunrise hour angle (SHA, in degrees) to daylight hours.
 - **Parameters:** `SHA_deg` (float, numpy array, or Raster): Sunrise hour angle in degrees.
 - **Returns:** Daylight hours.
+- **References:**
+	- Allen, R.G., Pereira, L.S., Raes, D., Smith, M., 1998. Crop evapotranspiration-Guidelines for computing crop water requirements-FAO Irrigation and drainage paper 56. FAO, Rome, 300(9).
+	- Duffie, J. A., & Beckman, W. A. (2013). Solar Engineering of Thermal Processes (4th ed.). Wiley.
+
 
 ### 5. `calculate_daylight(DOY=None, lat=None, SHA_deg=None, datetime_UTC=None, geometry=None)`
 - **Description:** Calculates daylight hours for a given day and location. Flexible input: provide SHA directly, or let the function compute it from DOY and latitude.
@@ -61,10 +70,13 @@ import sun_angles
 	- `geometry` (optional): Geometry object with latitude.
 - **Returns:** Daylight hours.
 
+
 ### 6. `sunrise_from_SHA(SHA_deg)`
 - **Description:** Calculates the sunrise hour from the sunrise hour angle (SHA, in degrees).
 - **Parameters:** `SHA_deg` (float, numpy array, or Raster): Sunrise hour angle in degrees.
 - **Returns:** Sunrise hour.
+- **Reference:** Duffie, J.A., & Beckman, W.A. (2013). Solar Engineering of Thermal Processes. John Wiley & Sons.
+
 
 ### 7. `SZA_deg_from_lat_dec_hour(latitude, solar_dec_deg, hour)`
 - **Description:** Calculates the solar zenith angle (SZA, in degrees) from latitude, solar declination, and hour.
@@ -73,6 +85,8 @@ import sun_angles
 	- `solar_dec_deg` (float, numpy array, or Raster): Solar declination in degrees.
 	- `hour` (float, numpy array, or Raster): Solar time in hours.
 - **Returns:** Solar zenith angle in degrees.
+- **Reference:** Muneer, T., & Fairooz, F. (2005). Solar radiation model. Applied energy, 81(4), 419-437.
+
 
 ### 8. `calculate_SZA_from_DOY_and_hour(lat, lon, DOY, hour)`
 - **Description:** Calculates the solar zenith angle (SZA, in degrees) from latitude, longitude, day of year, and hour.
@@ -83,6 +97,7 @@ import sun_angles
 	- `hour` (float or array): Hour of day.
 - **Returns:** Solar zenith angle in degrees.
 
+
 ### 9. `calculate_SZA_from_datetime(time_UTC, lat, lon)`
 - **Description:** Calculates the solar zenith angle (SZA, in degrees) for a given UTC time, latitude, and longitude.
 - **Parameters:** 
@@ -91,11 +106,19 @@ import sun_angles
 	- `lon` (float): Longitude in degrees.
 - **Returns:** Solar zenith angle in degrees.
 
+
 ### 10. `calculate_solar_azimuth(solar_dec_deg, SZA_deg, hour)`
 - **Description:** Calculates the solar azimuth angle (in degrees) from solar declination, solar zenith angle, and hour.
 - **Parameters:** 
 	- `solar_dec_deg` (float, numpy array, or Raster): Solar declination in degrees.
 	- `SZA_deg` (float, numpy array, or Raster): Solar zenith angle in degrees.
 	- `hour` (float, numpy array, or Raster): Hour of the day.
-- **Returns:** Solar azimuth angle in degrees.
-# `sun-angles` Python Package
+- **Reference:** Muneer, T., & Fairooz, F. (2005). Solar radiation and daylight models: for the energy efficient design of buildings. Architectural Press.
+
+# References
+
+- Allen, R.G., Pereira, L.S., Raes, D., Smith, M., 1998. Crop evapotranspiration-Guidelines for computing crop water requirements-FAO Irrigation and drainage paper 56. FAO, Rome, 300(9).
+- Duffie, J. A., & Beckman, W. A. (2013). Solar Engineering of Thermal Processes (4th ed.). Wiley.
+- Muneer, T., & Fairooz, F. (2005). Solar radiation model. Applied energy, 81(4), 419-437.
+- Muneer, T., & Fairooz, F. (2005). Solar radiation and daylight models: for the energy efficient design of buildings. Architectural Press.
+
