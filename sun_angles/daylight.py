@@ -48,10 +48,10 @@ def daylight_from_SHA(SHA_deg: Union[Raster, np.ndarray]) -> Union[Raster, np.nd
 
 
 def calculate_daylight(
-    DOY: Union[Raster, np.ndarray, int] = None,
+    day_of_year: Union[Raster, np.ndarray, int] = None,
     lat: Union[Raster, np.ndarray, float] = None,
     SHA_deg: Union[Raster, np.ndarray, float] = None,
-    datetime_UTC: datetime = None,
+    time_UTC: Union[datetime, str, list, np.ndarray] = None,
     geometry: SpatialGeometry = None
 ) -> Union[Raster, np.ndarray]:
     """
@@ -81,23 +81,31 @@ def calculate_daylight(
     Union[Raster, np.ndarray]
         Daylight hours for the given inputs.
     """
+
     # If SHA_deg is not provided, calculate it from DOY and latitude
     if SHA_deg is None:
         # If latitude is not provided, try to extract from geometry
         if lat is None and geometry is not None:
             lat = geometry.lat
 
-        # If DOY is not provided, try to extract from datetime_UTC
-        if DOY is None and datetime_UTC is not None:
-            # If datetime_UTC is a string, parse it to a datetime object
-            if isinstance(datetime_UTC, str):
-                datetime_UTC = parser.parse(datetime_UTC)
+        # If DOY is not provided, try to extract from time_UTC
+        if day_of_year is None and time_UTC is not None:
+            def to_doy(val):
+                if isinstance(val, str):
+                    val = parser.parse(val)
+                return int(pd.Timestamp(val).dayofyear)
 
-            # Convert datetime to day of year
-            DOY = int(pd.Timestamp(datetime_UTC).dayofyear)
+            # Handle array-like or single value
+            if isinstance(time_UTC, (list, np.ndarray)):
+                day_of_year = np.array([to_doy(t) for t in time_UTC])
+            else:
+                day_of_year = to_doy(time_UTC)
 
+        # Ensure day_of_year is a numpy array if it's a list (for downstream math)
+        if isinstance(day_of_year, list):
+            day_of_year = np.array(day_of_year)
         # Compute SHA_deg using DOY and latitude
-        SHA_deg = SHA_deg_from_DOY_lat(DOY, lat)
+        SHA_deg = SHA_deg_from_DOY_lat(day_of_year, lat)
 
     # Compute daylight hours from SHA_deg
     daylight_hours = daylight_from_SHA(SHA_deg)
