@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 from datetime import datetime
-from sun_angles.daylight import calculate_daylight
+from sun_angles.calculate_daylight import calculate_daylight
 
 class TestCalculateDaylight(unittest.TestCase):
     def test_time_utc_single_datetime(self):
