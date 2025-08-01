@@ -67,11 +67,34 @@ def calculate_daylight(
         # If latitude is not provided, try to extract from geometry
         if lat is None and geometry is not None:
             lat = geometry.lat
-        
+
         if lon is None and geometry is not None:
             lon = geometry.lon
-        
+
+        # Handle day_of_year input: convert lists to np.ndarray
+        if day_of_year is not None:
+            if isinstance(day_of_year, list):
+                day_of_year = np.array(day_of_year)
+
+        # Handle lat input: convert lists to np.ndarray
+        if lat is not None:
+            if isinstance(lat, list):
+                lat = np.array(lat)
+
+        # If day_of_year is not provided, try to infer from time_UTC
         if day_of_year is None:
+            # Handle string or list of strings for time_UTC
+            if isinstance(time_UTC, str):
+                time_UTC = parser.parse(time_UTC)
+            elif isinstance(time_UTC, list):
+                time_UTC = [parser.parse(t) if isinstance(t, str) else t for t in time_UTC]
+            elif isinstance(time_UTC, np.ndarray) and time_UTC.dtype.type is np.str_:
+                time_UTC = np.array([parser.parse(t) for t in time_UTC])
+
+            # If lon is None, raise a clear error
+            if lon is None:
+                raise ValueError("Longitude (lon) must be provided when using time_UTC to infer day_of_year.")
+
             day_of_year = solar_day_of_year_for_longitude(
                 time_UTC=time_UTC,
                 lon=lon

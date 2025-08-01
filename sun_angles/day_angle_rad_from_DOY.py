@@ -24,4 +24,7 @@ def day_angle_rad_from_DOY(DOY: Union[Raster, np.ndarray]) -> Union[Raster, np.n
     Reference:
     Duffie, J. A., & Beckman, W. A. (2013). Solar Engineering of Thermal Processes (4th ed.). Wiley.
     """
+    # Accept lists, scalars, or arrays; convert to np.ndarray if needed
+    if isinstance(DOY, list):
+        DOY = np.array(DOY)
     return (2 * np.pi * (DOY - 1)) / 365
