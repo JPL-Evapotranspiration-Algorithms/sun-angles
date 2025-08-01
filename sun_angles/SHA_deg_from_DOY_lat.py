@@ -3,8 +3,8 @@ import warnings
 import numpy as np
 from rasters import Raster
 
-from .day_angle import day_angle_rad_from_DOY
-from .declination import solar_dec_deg_from_day_angle_rad
+from .day_angle_rad_from_DOY import day_angle_rad_from_DOY
+from .solar_dec_deg_from_day_angle_rad import solar_dec_deg_from_day_angle_rad
 
 def SHA_deg_from_DOY_lat(DOY: Union[Raster, np.ndarray], latitude: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
