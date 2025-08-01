@@ -3,8 +3,8 @@ import warnings
 import numpy as np
 from rasters import Raster
 
-from .day_angle import day_angle_rad_from_DOY
-from .declination import solar_dec_deg_from_day_angle_rad
+from .day_angle_rad_from_DOY import day_angle_rad_from_DOY
+from .solar_dec_deg_from_day_angle_rad import solar_dec_deg_from_day_angle_rad
 
 def SHA_deg_from_DOY_lat(DOY: Union[Raster, np.ndarray], latitude: Union[Raster, np.ndarray]) -> Union[Raster, np.ndarray]:
     """
@@ -32,6 +32,11 @@ def SHA_deg_from_DOY_lat(DOY: Union[Raster, np.ndarray], latitude: Union[Raster,
     References:
     Duffie, J. A., & Beckman, W. A. (2013). Solar Engineering of Thermal Processes (4th ed.). Wiley.
     """
+    # Accept lists, scalars, or arrays; convert to np.ndarray if needed
+    if isinstance(DOY, list):
+        DOY = np.array(DOY)
+    if isinstance(latitude, list):
+        latitude = np.array(latitude)
     # calculate day angle in radians
     day_angle_rad = day_angle_rad_from_DOY(DOY)
 
