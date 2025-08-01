@@ -60,15 +60,15 @@ import sun_angles
 	- Duffie, J. A., & Beckman, W. A. (2013). Solar Engineering of Thermal Processes (4th ed.). Wiley.
 
 
-### 5. `calculate_daylight(DOY=None, lat=None, SHA_deg=None, datetime_UTC=None, geometry=None)`
-- **Description:** Calculates daylight hours for a given day and location. Flexible input: provide SHA directly, or let the function compute it from DOY and latitude.
+### 5. `calculate_daylight(day_of_year=None, lat=None, SHA_deg=None, time_UTC=None, geometry=None)`
+- **Description:** Computes daylight hours for a specific day and location. Accepts multiple input types: you can provide the sunrise hour angle (SHA) directly, or supply day of year and latitude (or a datetime or geometry), and the function will calculate SHA as needed.
 - **Parameters:** 
-	- `DOY` (optional): Day of year.
-	- `lat` (optional): Latitude in degrees.
+	- `day_of_year` (optional): Day of year (int, array, or Raster).
+	- `lat` (optional): Latitude in degrees (float, array, or Raster).
 	- `SHA_deg` (optional): Sunrise hour angle in degrees.
-	- `datetime_UTC` (optional): Datetime in UTC.
+	- `time_UTC` (optional): Datetime in UTC (datetime, string, or array).
 	- `geometry` (optional): Geometry object with latitude.
-- **Returns:** Daylight hours.
+- **Returns:** Daylight hours (float, array, or Raster).
 
 
 ### 6. `sunrise_from_SHA(SHA_deg)`
