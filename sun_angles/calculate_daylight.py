@@ -6,7 +6,7 @@ from datetime import datetime
 from dateutil import parser
 import pandas as pd
 
-from solar_apparent_time import solar_day_of_year_for_longitude
+from solar_apparent_time import calculate_solar_day_of_year
 
 from .SHA_deg_from_DOY_lat import SHA_deg_from_DOY_lat
 from .daylight_from_SHA import daylight_from_SHA
@@ -95,8 +95,10 @@ def calculate_daylight(
             if lon is None:
                 raise ValueError("Longitude (lon) must be provided when using time_UTC to infer day_of_year.")
 
-            day_of_year = solar_day_of_year_for_longitude(
+            day_of_year = calculate_solar_day_of_year(
                 time_UTC=time_UTC,
+                geometry=geometry,
+                lat=lat,
                 lon=lon
             )
 
